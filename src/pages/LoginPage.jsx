@@ -6,15 +6,16 @@ import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
 const LoginPage = () => {
+  // UserContext에서 사용자 정보 관리 메서드 가져오기
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const handleLogin = async (formData) => {
     try {
       const { id, password } = formData;
-      const data = await login({ id, password });
+      const data = await login({ id, password }); // login API 호출
       if (data.success) {
         setUser(data);
-        navigate("/");
+        navigate("/"); // 로그인 성공 시 홈으로 이동
       }
     } catch (error) {
       alert("로그인에 실패했습니다. 다시 시도해주세요.");

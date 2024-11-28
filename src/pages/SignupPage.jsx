@@ -7,11 +7,10 @@ const SignupPage = () => {
 
   const handleSignup = async (formData) => {
     try {
-      const data = await register(formData);
+      const data = await register(formData); // 회원가입 API 호출
       if (data.success) {
-      navigate("/login");
+        navigate("/login");
       }
-
     } catch (error) {
       alert("회원가입에 실패했습니다. 다시 시도해주세요.");
     }

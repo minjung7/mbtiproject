@@ -5,11 +5,11 @@ import { UserContext } from "../contexts/UserContext";
 
 const ProfilePage = () => {
   const { user, setUser } = useContext(UserContext);
-    const navigate = useNavigate();
-  const [nickname, setNickname] = useState(user?.nickname || "");
+  const navigate = useNavigate();
+  const [nickname, setNickname] = useState(user?.nickname || ""); // 초기 닉네임 상태 설정
 
   const handleNicknameChange = (e) => {
-    setNickname(e.target.value);
+    setNickname(e.target.value); // 입력된 닉네임을 상태에 반영
   };
 
   const handleSubmit = async (e) => {

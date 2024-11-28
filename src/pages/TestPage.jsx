@@ -13,11 +13,13 @@ const TestPage = () => {
   console.log("user: ", user);
   console.log("userid: ", user.id);
 
+  // 테스트 제출 핸들러
   const handleTestSubmit = async (answers) => {
     const mbtiResult = calculateMBTI(answers);
     setResult(mbtiResult);
 
     try {
+      // 요청 데이터 생성
       const requestData = {
         userId: user.userId,
         nickname: user.nickname,
