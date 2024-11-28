@@ -1,3 +1,5 @@
+import { questions } from "../data/questions";
+
 export const mbtiDescriptions = {
   ENFJ: "ENFJ: 이타주의자의 끝판왕! ENFJ는 사람을 돕는 데에 진심인 편이에요. 이들은 모든 사람에게 좋은 사람이 되고자 하며, 자기 자신보다 남을 더 우선시하는 슈퍼히어로 같은 존재예요. 친구들이 고민 상담을 할 때마다 차 한 잔 준비해놓고 기다리고 있을지도 몰라요. 그러나 가끔 너무 많은 걸 감당하려고 해서 자신을 잊어버리기도 해요. 그래서 가끔은 '나도 휴식이 필요해!'라고 외칠 필요가 있어요.",
 
@@ -32,15 +34,16 @@ export const mbtiDescriptions = {
   ENTP: "ENTP: 발명가 정신이 넘치는 도전가! ENTP는 항상 새로운 아이디어를 탐구하고 창의적인 해결책을 찾는 사람들입니다. 이들은 '틀에 박힌 사고'를 거부하며, 세상에 존재하지 않았던 무언가를 만들어내는 데에 큰 기쁨을 느껴요. '이게 진짜 가능할까?'라는 질문에 답을 찾는 과정 자체를 즐기며, 항상 도전정신으로 가득 차 있어요. 하지만 가끔은 너무 많은 아이디어를 동시에 시도하려다 보니 끝맺음이 부족할 때도 있답니다. 그래도 이들과 함께라면 항상 재미있고 흥미로운 모험을 경험할 수 있어요.",
 };
 
-import { questions } from "../data/questions"; // 질문 데이터 가져오기
-
 export const calculateMBTI = (answers) => {
   // 각 MBTI 유형에 대한 점수 초기화
   const scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+
   answers.forEach(({ type, answer }) => {
     const [option1, option2] = type.split("/"); // E/I, S/N 등의 유형 분리
+
     const question = questions.find((q) => q.type === type);
     const [firstOption, secondOption] = question.options;
+
     // 답변에 따라 점수 누적
     if (answer === firstOption) {
       scores[option1]++;
@@ -48,9 +51,11 @@ export const calculateMBTI = (answers) => {
       scores[option2]++;
     }
   });
+
   // 각 점수 비교를 통해 최종 MBTI 유형 계산
   const result = `${scores.E >= scores.I ? "E" : "I"}${
     scores.S >= scores.N ? "S" : "N"
   }${scores.T >= scores.F ? "T" : "F"}${scores.J >= scores.P ? "J" : "P"}`;
+
   return result;
 };
