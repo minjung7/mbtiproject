@@ -9,7 +9,7 @@ const TestResultsPage = () => {
   // 테스트 결과 가져오기 함수
   const fetchTestResults = async () => {
     const res = await fetch(
-      "https://power-spiritual-bovid.glitch.me/testResults"
+      `${import.meta.env.VITE_BASE_URL}/testResults`
     );
     const data = await res.json();
     setTestResults(data);
@@ -17,7 +17,7 @@ const TestResultsPage = () => {
 
   // 테스트 결과 삭제 함수
   const handleDelete = async (id) => {
-    await fetch(`https://power-spiritual-bovid.glitch.me/testResults/${id}`, {
+    await fetch(`${import.meta.env.VITE_BASE_URL}/testResults/${id}`, {
       method: "DELETE",
     });
 

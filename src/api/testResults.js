@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://power-spiritual-bovid.glitch.me/testResults";
+const API_URL = `${import.meta.env.VITE_BASE_URL}/testResults`;
 
 export const getTestResults = async () => {
   const response = await axios.get(API_URL);
